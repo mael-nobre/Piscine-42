@@ -6,7 +6,7 @@
 /*   By: mnobre <mnobre@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/21 19:23:15 by mnobre            #+#    #+#             */
-/*   Updated: 2026/07/21 22:00:43 by mnobre           ###   ########lyon.fr   */
+/*   Updated: 2026/07/29 20:38:55 by mnobre           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,7 @@ int	main(void)
 		printf("%d\n", arr[i]);
 		i++;
 	}
+	free(arr);
+	return(0);
 }
 */

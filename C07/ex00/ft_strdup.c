@@ -6,7 +6,7 @@
 /*   By: mnobre <mnobre@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/21 17:52:27 by mnobre            #+#    #+#             */
-/*   Updated: 2026/07/21 18:21:18 by mnobre           ###   ########lyon.fr   */
+/*   Updated: 2026/07/29 20:33:29 by mnobre           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,15 @@ char	*ft_strdup(char *src)
 /*
 #include <stdio.h>
 
-int	main(void)
+int	main(int argc, char **argv)
 {
 	char	*str;
 
-	str = ft_strdup("Hello, World!");
+	if (argc != 2)
+		return (0);
+	str = ft_strdup(argv[1]);
 	printf("%s\n", str);
+	free(str);
+	return (0);
 }
 */
