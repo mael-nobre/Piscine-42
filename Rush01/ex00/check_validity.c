@@ -6,7 +6,7 @@
 /*   By: mnobre <mnobre@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/25 13:16:40 by mnobre            #+#    #+#             */
-/*   Updated: 2026/07/26 20:07:54 by mnobre           ###   ########lyon.fr   */
+/*   Updated: 2026/07/29 15:56:59 by mnobre           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@ int	check_row_double(int **grid, int y, int n)
 	while (i < n)
 	{
 		if (grid[y][i] == 0)
+		{
+			free(values);
 			return (1);
+		}
 		j = 0;
 		while (j < i)
 		{
@@ -54,12 +57,18 @@ int	check_col_double(int **grid, int x, int n)
 	while (i < n)
 	{
 		if (grid[i][x] == 0)
+		{
+			free(values);
 			return (1);
+		}
 		j = 0;
 		while (j < i)
 		{
 			if (grid[i][x] == values[j])
+			{
+				free(values);
 				return (0);
+			}
 			j++;
 		}
 		values[i] = grid[i][x];

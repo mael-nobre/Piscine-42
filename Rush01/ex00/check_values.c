@@ -6,11 +6,11 @@
 /*   By: mnobre <mnobre@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/25 15:49:31 by mnobre            #+#    #+#             */
-/*   Updated: 2026/07/26 20:05:14 by mnobre           ###   ########lyon.fr   */
+/*   Updated: 2026/07/29 16:20:19 by mnobre           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	check_and_increment(int **grid, int **values, int coord[4]);
+int	check_and_increment(int **grid, int coord[4]);
 
 int	check_up_values(int **grid, int **values, int x, int n)
 {
@@ -20,10 +20,10 @@ int	check_up_values(int **grid, int **values, int x, int n)
 
 	coord[0] = -1;
 	coord[1] = x;
-	coord[2] = 0;
+	coord[2] = values[0][x];
 	coord[3] = 0;
 	highest = 0;
-	while (coord[0]++ < n)
+	while (++coord[0] < n)
 	{
 		if (grid[coord[0]][x] > highest)
 		{
@@ -32,7 +32,7 @@ int	check_up_values(int **grid, int **values, int x, int n)
 		}
 		if (highest == n)
 			break ;
-		check = check_and_increment(grid, values, coord);
+		check = check_and_increment(grid, coord);
 		if (check != -1)
 			return (check);
 	}
@@ -49,10 +49,10 @@ int	check_down_values(int **grid, int **values, int x, int n)
 
 	coord[0] = n;
 	coord[1] = x;
-	coord[2] = 1;
+	coord[2] = values[1][x];
 	coord[3] = 0;
 	highest = 0;
-	while (coord[0]-- >= 0)
+	while (--coord[0] >= 0)
 	{
 		if (grid[coord[0]][x] > highest)
 		{
@@ -61,7 +61,7 @@ int	check_down_values(int **grid, int **values, int x, int n)
 		}
 		if (highest == n)
 			break ;
-		check = check_and_increment(grid, values, coord);
+		check = check_and_increment(grid, coord);
 		if (check != -1)
 			return (check);
 	}
@@ -76,21 +76,21 @@ int	check_left_values(int **grid, int **values, int y, int n)
 	int	highest;
 	int	check;
 
-	coord[0] = -1;
-	coord[1] = y;
-	coord[2] = 2;
+	coord[0] = y;
+	coord[1] = -1;
+	coord[2] = values[2][y];
 	coord[3] = 0;
 	highest = 0;
-	while (coord[0]++ < n)
+	while (++coord[1] < n)
 	{
-		if (grid[y][coord[0]] > highest)
+		if (grid[y][coord[1]] > highest)
 		{
-			highest = grid[y][coord[0]];
+			highest = grid[y][coord[1]];
 			coord[3]++;
 		}
 		if (highest == n)
 			break ;
-		check = check_and_increment(grid, values, coord);
+		check = check_and_increment(grid, coord);
 		if (check != -1)
 			return (check);
 	}
@@ -105,21 +105,21 @@ int	check_right_values(int **grid, int **values, int y, int n)
 	int	highest;
 	int	check;
 
-	coord[0] = n;
-	coord[1] = y;
-	coord[2] = 3;
+	coord[0] = y;
+	coord[1] = n;
+	coord[2] = values[3][y];
 	coord[3] = 0;
 	highest = 0;
-	while (coord[0]-- >= 0)
+	while (--coord[1] >= 0)
 	{
-		if (grid[y][coord[0]] > highest)
+		if (grid[y][coord[1]] > highest)
 		{
-			highest = grid[y][coord[0]];
+			highest = grid[y][coord[1]];
 			coord[3]++;
 		}
 		if (highest == n)
 			break ;
-		check = check_and_increment(grid, values, coord);
+		check = check_and_increment(grid, coord);
 		if (check != -1)
 			return (check);
 	}
