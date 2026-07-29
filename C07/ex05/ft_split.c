@@ -6,7 +6,7 @@
 /*   By: mnobre <mnobre@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/24 13:02:53 by mnobre            #+#    #+#             */
-/*   Updated: 2026/07/29 20:56:54 by mnobre           ###   ########lyon.fr   */
+/*   Updated: 2026/07/29 21:50:22 by mnobre           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,47 +54,41 @@ int	ft_count_word(char *str, char *charset)
 	return (count);
 }
 
+void	check_index(char *str, char **res, int var[4])
+{
+	if (var[0] != var[2])
+	{
+		*(res + var[3]) = (char *) malloc((var[0] - var[2] + 1) * sizeof(char));
+		ft_strncpy(*(res + var[3]), str + var[2], var[0] - var[2]);
+		var[3]++;
+	}
+}
+
+// var[0] : index 1
+// var[1] : index 2
+// var[2] : last separator index
+// var[3] : word index
 void	ft_alloc(char *str, char *charset, char **res)
 {
-	int	i;
-	int	j;
-	int	last_sep_index;
-	int	word_index;
+	int	var[4];
 
-	last_sep_index = 0;
-	i = 0;
-	word_index = 0;
-	while (*(str + i) != '\0')
+	var[0] = -1;
+	var[2] = 0;
+	var[3] = 0;
+	while (*(str + ++var[0]) != '\0')
 	{
-		j = 0;
-		while (*(charset + j) != '\0')
+		var[1] = -1;
+		while (*(charset + ++var[1]) != '\0')
 		{
-			if (*(str + i) == *(charset + j))
+			if (*(str + var[0]) == *(charset + var[1]))
 			{
-				if (i != last_sep_index)
-				{
-					*(res + word_index) = (char *)
-						malloc((i - last_sep_index + 1) * sizeof(char));
-					ft_strncpy(*(res + word_index),
-						str + last_sep_index, i - last_sep_index);
-					word_index++;
-				}
-				last_sep_index = i + 1;
-				break ;
+				check_index(str, res, var);
+				var[2] = var[0] + 1;
 			}
-			j++;
 		}
-		i++;
 	}
-	if (i != last_sep_index)
-	{
-		*(res + word_index) = (char *) malloc((i - last_sep_index + 1)
-				* sizeof(char));
-		ft_strncpy(*(res + word_index),
-			str + last_sep_index, i - last_sep_index);
-		word_index++;
-	}
-	*(res + word_index) = 0;
+	check_index(str, res, var);
+	*(res + var[3]) = 0;
 }
 
 char	**ft_split(char *str, char *charset)
