@@ -6,7 +6,7 @@
 /*   By: mnobre <mnobre@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 07:28:23 by mnobre            #+#    #+#             */
-/*   Updated: 2026/07/29 19:31:57 by mnobre           ###   ########lyon.fr   */
+/*   Updated: 2026/07/30 09:43:10 by mnobre           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,3 +86,40 @@ char	*ft_strjoin(int size, char **strs, char *sep)
 	ft_process_str(size, strs, sep, res);
 	return (res);
 }
+/*
+#include <stdio.h>
+#include <string.h>
+
+int	main(void)
+{
+	int		size;
+	char	*res;
+	char	*sep;
+	char	**strs;
+	int		i;
+
+	size = 4;
+	sep = (char *) malloc(2 * sizeof(char));
+	strcpy(sep, ",");
+	strs = (char **) malloc(size * sizeof(char *));
+	i = 0;
+	while (i < size)
+	{
+		strs[i] = (char *) malloc(10 * sizeof(char));
+		strcpy(strs[i], "Hello");
+		i++;
+	}
+	res = ft_strjoin(size, strs, sep);
+	i = 0;
+	while (i < size)
+	{
+		free(strs[i]);
+		i++;
+	}
+	free(strs);
+	free(sep);
+	printf("%s\n", res);
+	free(res);
+	return (0);
+}
+*/

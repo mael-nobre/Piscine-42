@@ -6,7 +6,7 @@
 /*   By: mnobre <mnobre@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 10:20:10 by mnobre            #+#    #+#             */
-/*   Updated: 2026/07/23 14:32:43 by mnobre           ###   ########lyon.fr   */
+/*   Updated: 2026/07/30 09:53:21 by mnobre           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,3 +61,18 @@ char	*ft_convert_base(char *nbr, char *base_from, char *base_to)
 	*(res + res_len) = '\0';
 	return (res);
 }
+/*
+#include <stdio.h>
+
+int	main(int argc, char **argv)
+{
+	char	*res;
+
+	if (argc != 4)
+		return (0);
+	res = ft_convert_base(argv[1], argv[2], argv[3]);
+	printf("%s\n", res);
+	free(res);
+	return (0);
+}
+*/
